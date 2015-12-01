@@ -1,0 +1,72 @@
+package pakage;
+
+import javax.swing.JOptionPane;
+
+public class Student {
+	
+	private final int SIZE = 4;
+	private String name;
+	private double[] assignments;
+	private double[] weights;
+	private double gpa;
+	
+	public Student(){
+		name = "";
+		gpa=0;
+		assignments = new double[SIZE];
+		weights = new double[SIZE];
+	}
+
+	public Student(String name, double[] assignments, double[] weights) {
+		this.name = name;
+		this.assignments = assignments;
+		this.weights = weights;
+	}
+	
+
+	public double[] getweights() {
+		return weights;
+	}
+
+	public void setweights(double[] weights) {
+		weights = weights;
+	}
+
+	public String getname() {
+		return name;
+	}
+
+	public void setname(String name) {
+		this.name = name;
+	}
+
+	public double[] getassignments() {
+		return assignments;
+	}
+
+	public void setassignments(double[] assignments) {
+		this.assignments = assignments;
+	}
+
+	
+	public void setgpa(double gpa) {
+		this.gpa = gpa;
+	}
+	
+	private double calculateAvgScore(double [] assignments, double [] weights){
+		double sum = 0;
+		for(int i=0; i<assignments.length;i++)
+			 sum += (assignments[i] * (weights[i]/100));
+			gpa =sum;
+		return gpa;
+	}
+	
+	public double getgpa() {
+		return calculateAvgScore(assignments, weights);
+	}
+
+	
+	  public String toString(){
+		return "Student Name: "+ this.name + " GPA: " + getgpa();
+		}
+}
