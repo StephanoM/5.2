@@ -1,0 +1,40 @@
+package pakage;
+
+public class Four1 {
+	private String Username = "";
+	private String Password = "";
+	private String Accounts = "";
+	
+	public Four1(){
+		this.Username = "nada";
+		this.Password = "nada";
+		this.Accounts = "nada";
+	}
+	
+	public Four1(String Username, String Password, String Accounts){
+		this.Username = Username;
+		this.Password = Password;
+		this.Accounts = Accounts;
+	}
+	public String getUsername(){
+		return Username;
+	}
+	public void setUsernmae(String Username){
+		this.Username = Username;
+	}
+	public String getPassword(){
+		return Password;
+	}
+	public void setPassword(String Password){
+		this.Username = Password;
+	}
+	public String getAccounts(){
+		return Accounts;
+	}
+	public void setAccounts(String Accounts){
+		this.Accounts = Accounts;
+	}
+	public String toString(){
+		return "Userneme:   " + this.Username + " Password:  " + this.Password + "Account type: " + this.Accounts;
+	}
+}
