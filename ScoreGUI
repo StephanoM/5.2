@@ -1,0 +1,190 @@
+package pakage;
+
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
+
+import javax.swing.JOptionPane;
+
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+public class ScoreGUI extends Application {
+/*
+ * (non-Javadoc)
+ * @see javafx.application.Application#start(javafx.stage.Stage)
+ * Hugo Muro
+ * Assigment 5
+ * Java Fx
+ * CSC 200
+ */
+	@Override
+	public void start(Stage primaryStage) {
+		primaryStage.setTitle("Project Five");
+		
+		TextField TextFieldA1 = new TextField();
+		TextField TextFieldA2 = new TextField();
+		TextField TextFieldA3 = new TextField();
+		TextField TextFieldA4 = new TextField();
+		Label LabelA1 = new Label("Assignment 1");
+		Label LabelA2 = new Label("Assignment 2");
+		Label LabelA3 = new Label("Assignment 3");
+		Label LabelA4 = new Label("Assignment 4");
+		
+		TextField TextFieldW1 = new TextField();
+		TextField TextFieldW2 = new TextField();
+		TextField TextFieldW3 = new TextField();
+		TextField TextFieldW4 = new TextField();
+		Label LabelW = new Label("Weight");
+		Label LabelA = new Label("Assignments");
+
+		
+		
+		Button EnterBttn = new Button("Calculate");
+				
+		EnterBttn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0){
+
+				/*Initializing*/
+				boolean A1True = false;
+				boolean A2True = false;
+				boolean A3True = false;
+				boolean A4True = false;
+				boolean Blank = false;
+				boolean Scores = false;
+				boolean Weight = false;
+
+
+				String A1 = TextFieldA1.getText();
+				String A2 = TextFieldA2.getText();
+				String A3 = TextFieldA3.getText();
+				String A4 = TextFieldA4.getText();
+				
+				String W1 = TextFieldW1.getText();
+				String W2 = TextFieldW2.getText();
+				String W3 = TextFieldW3.getText();
+				String W4 = TextFieldW4.getText();
+				
+
+
+				/*Checking for Blank statements*/
+				if(!A1.equals("")&& !W1.equals("")){
+					A1True = true;		
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Assigment 1 score or weight is Blank");
+				}
+				
+				if(!A2.equals("")&& !W2.equals("")){
+					A2True = true;		
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Assigment 2 score or weight is Blank");
+				}
+				
+				if(!A3.equals("") &&!W3.equals("")){
+					A3True = true;		
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Assigment 3 score or weight is Blank");
+				}
+				if(!A4.equals("")&& !W4.equals("")){
+					A4True = true;		
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Assigment 4 score or weight is Blank");
+				}
+
+				
+
+				/*Validation*/		
+
+				if((A1True == true) && (A2True == true) && (A3True == true) &&
+				(A4True == true)){
+					Blank = true;
+
+				}
+				
+				if (Blank == true){
+					double DoubleA1 = Double.parseDouble(A1);
+					double DoubleA2 = Double.parseDouble(A2);
+					double DoubleA3 = Double.parseDouble(A3);
+					double DoubleA4 = Double.parseDouble(A4);
+					
+					double DoubleW1 = Double.parseDouble(W1);
+					double DoubleW2 = Double.parseDouble(W2);
+					double DoubleW3 = Double.parseDouble(W3);
+					double DoubleW4 = Double.parseDouble(W4);
+
+
+					if ((DoubleA1 > 100) || (DoubleA2 > 100) || (DoubleA3 > 100) || (DoubleA4 > 100)){
+						JOptionPane.showMessageDialog(null, "Scores cant be greater than 100");
+					}else{
+						Scores = true;
+					}
+					if ((DoubleW1 + DoubleW2+ DoubleW3+ DoubleW4 != 100)){
+						JOptionPane.showMessageDialog(null, "Weights cant be greater or less than 100");
+					}else{
+						Weight = true;
+					}
+					
+					if((Scores == true) && (Weight == true)){
+						
+						double[] Assignments =  {DoubleA1,DoubleA2,DoubleA3,DoubleA4};
+						double[] Weights = {DoubleW1,DoubleW2,DoubleW3,DoubleW4};
+						Student Student1 = new Student ("Stephano",Assignments,Weights);
+						
+						System.out.println (Student1);
+					}
+				}
+				
+				
+				
+				
+				
+				
+			}});
+
+		GridPane grid = new GridPane();
+		grid.setAlignment(Pos.CENTER);
+		grid.setVgap(10);
+		grid.setHgap(10);
+		
+		grid.add(LabelA,	  2,0);
+		grid.add(TextFieldA1, 2,1);
+		grid.add(TextFieldA2, 2,2);
+		grid.add(TextFieldA3, 2,3);
+		grid.add(TextFieldA4, 2,4);
+		grid.add(LabelA1,	  1,1);
+		grid.add(LabelA2,	  1,2);
+		grid.add(LabelA3,	  1,3);
+		grid.add(LabelA4,	  1,4);
+		
+		grid.add(LabelW,	  3,0);
+		grid.add(TextFieldW1, 3,1);
+		grid.add(TextFieldW2, 3,2);
+		grid.add(TextFieldW3, 3,3);
+		grid.add(TextFieldW4, 3,4);
+		
+		
+		grid.add(EnterBttn,  2,6);
+
+		
+		Scene scene = new Scene(grid, 500, 500);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+}
